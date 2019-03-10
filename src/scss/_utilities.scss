@@ -2,25 +2,39 @@
 // Utilities
 // ================================
 
-// Media queries
-@mixin mq($break) {
-	@if $break == "small" {
-		@media (min-width: $brkpoint-sm) and (max-width: $brkpoint-md) {
-			@content; 
-		}
-	} @else if $break == "medium" {
-		@media (min-width: $brkpoint-md + 1) {
-			@content; 
-		}
-	} @else if $break == "sm-md" {
-		@media (max-width: $brkpoint-lg - 1) {
-			@content; 
-		}
-	} @else if $break == "large" {
-		@media (min-width: $brkpoint-lg) {
-			@content; 
-		}
-	} @else {
-		@error "Whoops! No value could be retrieved for '#{$break}'."
-	}
+// Functions
+@function remcalc($size) {
+	$rem-size: $size / 16;
+	@return #{$rem-size}rem;
+}
+
+@function break($key) {
+	$pixel-size: map-get((
+		'xs-min': $bp-xs,
+		'sm-min': $bp-sm,
+		'md-min': $bp-md,
+		'lg-min': $bp-lg,
+		'xs-max': $bp-sm - 1,
+		'sm-max': $bp-md - 1,
+		'md-max': $bp-lg - 1,
+	), $key);
+  @return remcalc($pixel-size);
+}
+
+// Mixins
+@mixin mq($point, $rule: 'min') {
+  @if $rule == 'only' {
+    @media (min-width: break(#{$point}-min)) and (max-width: break(#{$point}-max)) {
+      @content
+    }
+  } @else {
+    @media (#{$rule}-width: break(#{$point}-#{$rule})) {
+      @content
+    }
+  }
+}
+
+@mixin square($value) {
+	width: $value;
+	height: $value;
 }

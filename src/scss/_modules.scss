@@ -25,11 +25,88 @@
 		background: $deep-blue; /* old browsers */
 		background: linear-gradient(to bottom, white 0%, $deep-blue 100% ); 
 
-		@include mq(medium) {
+		@include mq(md) {
 			height: $sea-height-md;
 		}
-		@include mq(large) {
+		@include mq(lg) {
 			height: $sea-height-lg;
 		}
 	}
 }
+
+// Creatures
+// @mixin creature-bgs($bgs...) {
+// 	@each $bg in $bgs {
+// 		&.#{$bg} {
+// 			background: url('../img/#{$bg}.png') no-repeat center;
+// 			background-size: 100%;
+// 		}
+// 	}
+// }
+
+.creature {
+	@include square(remcalc(300));
+	transition: all 1s;
+	position: absolute;
+	z-index: 420;
+	// @include creature-bgs(seahorse, turtle, clown, humpback-whale, frilled-shark);
+	
+	@include mq(xs) {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	@include mq(md) {
+		@include square(remcalc(500));
+	}
+
+	@include mq(lg) {
+		@include square(remcalc(600));
+		animation: bob 3s infinite;
+
+		&.right-offset {
+			left: 100%;
+
+			&.past { 
+				left: 50%; 
+			}
+		}
+
+		&.left-offset {
+			right: 100%;
+			left: initial;
+
+			&.past { 
+				right: 50%; 
+			}
+		}
+	}
+}
+
+// $creatures: 5;
+// $offsetTop: 15;
+
+// @for $i from 1 through $creatures {
+// 	.creature--#{$i} {
+// 		 Each animal is 15% deeper than the one before it 
+// 		top: #{$offsetTop}%;
+// 	}
+// 	$offsetTop:	$offsetTop + 15;
+// } 
+
+/* Bobbing/swaying animation for animals on lg screens */
+@keyframes bob {
+	50% {
+		transform: translate3d(-remcalc(20), -remcalc(2), 0);
+	} 
+}
+
+
+
+
+
+
+
+
+
+

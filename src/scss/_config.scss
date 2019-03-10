@@ -30,9 +30,10 @@ $trns-duration  : .4s;
 $path--rel      : "../img";
 
 // Breakpoints
-$brkpoint-sm	: 1px;
-$brkpoint-md	: 767px;
-$brkpoint-lg	: 1100px;
+$bp-xs: 1;
+$bp-sm: 576;
+$bp-md: 768;
+$bp-lg: 992;
 
 // Nav 
 $nav-height		: 50px;

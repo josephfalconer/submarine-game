@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import { updateStoreState } from '../actions';
+import { CREATURES } from '../constants';
+import Creature from './creature';
 
 class App extends PureComponent {
 
@@ -29,7 +31,9 @@ class App extends PureComponent {
     const className = this.props.scrollTop > 10000 ? 'sea__container no-scroll' : 'sea__container';
     return (
       <div ref={this.setSeaElement} className={className}>
-        <div className="sea__scrollarea"></div>
+        <div className="sea__scrollarea">
+          <Creature creature={CREATURES.SEAHORSE} />
+        </div>
       </div>
     );
   }
