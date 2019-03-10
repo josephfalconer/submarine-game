@@ -1,6 +1,8 @@
 import { SIMPLE_STATE_UPDATE } from './actions';
 
-const INITIAL_STATE = {}
+const INITIAL_STATE = {
+  scrollTop: 0,
+}
 
 export default function simpleReducer(state = INITIAL_STATE, action) {
   switch(action.type) {
