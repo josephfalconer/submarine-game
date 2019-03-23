@@ -21,6 +21,7 @@
 	}
 
 	&__scrollarea {
+		position: relative;
 		height: $sea-height-sm;
 		background: $deep-blue; /* old browsers */
 		background: linear-gradient(to bottom, white 0%, $deep-blue 100% ); 
@@ -31,6 +32,36 @@
 		@include mq(lg) {
 			height: $sea-height-lg;
 		}
+	}
+}
+
+.seaweed {
+	display: block;
+	position: fixed;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	transition: transform 0.1;
+
+	&--brown {
+		width: 55%;
+	}
+
+	&--blue {
+		width: 80%;
+	}
+
+	&--yellow {
+		width: 85%;
+	}
+
+	&--green {
+		width: 95%;
+	}
+
+	svg {
+		width: 100%;
+		height: auto;
 	}
 }
 
