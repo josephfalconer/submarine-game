@@ -4,7 +4,8 @@
   "description": "Submarine scrolling game",
   "main": "index.js",
   "scripts": {
-    "serve": "webpack --watch",
+    "serve": "webpack-dev-server",
+    "watch": "webpack --watch",
     "build": "webpack -p"
   },
   "author": "Joseph Falconer",
