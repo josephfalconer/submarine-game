@@ -44,23 +44,23 @@
 	transition: transform $transition-duration;
 
 	&--brown {
-		width: 55%;
 		z-index: $submarine-z-index - 1;
+		width: 55%;
 	}
 
 	&--blue {
-		width: 80%;
 		z-index: $submarine-z-index - 1;
+		width: 80%;
 	}
 
 	&--yellow {
-		width: 85%;
 		z-index: $submarine-z-index - 1;
+		width: 85%;
 	}
 
 	&--green {
+		z-index: $submarine-z-index + 2;
 		width: 95%;
-		z-index: $submarine-z-index + 1;
 	}
 
 	svg {
@@ -83,7 +83,7 @@
 		width: remcalc(300);
 		height: remcalc(200);
 	}
-	
+
 	@include mq(lg) {
 		width: remcalc(350);
 		height: remcalc(250);
@@ -95,26 +95,16 @@
 	}
 }
 
-// Creatures
-// @mixin creature-bgs($bgs...) {
-// 	@each $bg in $bgs {
-// 		&.#{$bg} {
-// 			background: url('../img/#{$bg}.png') no-repeat center;
-// 			background-size: 100%;
-// 		}
-// 	}
-// }
-
 .creature {
-	@include square(remcalc(300));
-	transition: all 1s;
 	position: absolute;
-	z-index: 420;
-	// @include creature-bgs(seahorse, turtle, clown, humpback-whale, frilled-shark);
+	z-index: $submarine-z-index + 1;
+	@include square(remcalc(300));
+	background-repeat: no-repeat;
+	background-size: 100%;
+	transition: all 1s;
 	
 	@include mq(xs) {
-		left: 50%;
-		transform: translateX(-50%);
+		left: 33%;
 	}
 
 	@include mq(md) {
@@ -122,52 +112,12 @@
 	}
 
 	@include mq(lg) {
-		@include square(remcalc(600));
 		animation: bob 3s infinite;
-
-		&.right-offset {
-			left: 100%;
-
-			&.past { 
-				left: 50%; 
-			}
-		}
-
-		&.left-offset {
-			right: 100%;
-			left: initial;
-
-			&.past { 
-				right: 50%; 
-			}
-		}
 	}
 }
 
-// $creatures: 5;
-// $offsetTop: 15;
-
-// @for $i from 1 through $creatures {
-// 	.creature--#{$i} {
-// 		 Each animal is 15% deeper than the one before it 
-// 		top: #{$offsetTop}%;
-// 	}
-// 	$offsetTop:	$offsetTop + 15;
-// } 
-
-/* Bobbing/swaying animation for animals on lg screens */
 @keyframes bob {
 	50% {
-		transform: translate3d(-remcalc(20), -remcalc(2), 0);
+		transform: translate3d(-15px, -5px, 0);
 	} 
 }
-
-
-
-
-
-
-
-
-
-

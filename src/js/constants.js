@@ -26,30 +26,30 @@ export const SEAWEED = [
   },
 ];
 
-export const CREATURES = {
-  SEAHORSE: {
-    position: 15,
-    name: 'Seahorse',
-    className: 'seahorse',
+export const CREATURES = [
+  {
+    topOffset: 15,
+    displayName: 'Seahorse',
+    name: 'seahorse',
   },
-  Turtle: {
-    position: 30,
-    name: 'Turtle',
-    className: 'turtle',
+  {
+    topOffset: 30,
+    displayName: 'Turtle',
+    name: 'turtle',
   },
-  CLOWN_FISH: {
-    position: 45,
-    name: 'Clown Fish',
-    className: 'clown-fish',
+  {
+    topOffset: 45,
+    displayName: 'Clown Fish',
+    name: 'clown-fish',
   },
-  HUMPBACK_WHALE: {
-    position: 60,
-    name: 'Humpback Whale',
-    className: 'whale',
+  {
+    topOffset: 60,
+    displayName: 'Humpback Whale',
+    name: 'whale',
   },
-  FRILLED_SHARK: {
-    position: 75,
-    name: 'Frilled Shark',
-    className: 'shark',
+  {
+    topOffset: 75,
+    displayName: 'Frilled Shark',
+    name: 'shark',
   },
-};
+];

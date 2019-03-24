@@ -49,6 +49,13 @@ class App extends PureComponent {
               scrollPercent={scrollPercent}
             />
           ))}
+          {CREATURES.map(creature => (
+            <Creature
+              key={`creature-${creature.name}`}
+              creature={creature}
+              scrollPercent={scrollPercent}
+            />
+          ))}
           <Submarine scrollPercent={scrollPercent} />
         </div>
       </div>
