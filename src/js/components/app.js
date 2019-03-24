@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { updateStoreState } from '../actions';
 import { CREATURES, SEAWEED } from '../constants';
 import Creature from './creature';
+import Quiz from './quiz';
 import Seaweed from './seaweed';
 import Submarine from './submarine';
 
@@ -19,6 +20,7 @@ class App extends PureComponent {
     const intervalID = setInterval(() => {
       this.updateScrollTop();
     }, 10);
+    this.seaContainerElement.focus();
   }
 
   updateScrollTop = () => {
@@ -36,11 +38,11 @@ class App extends PureComponent {
   }
 
   render() {
-    const { scrollPercent } = this.props;
+    const { scrollPercent, scrollTop } = this.props;
     // const className = scrollTop > 10000 ? 'sea__container no-scroll' : 'sea__container';
     const className = 'sea__container';
     return (
-      <div ref={this.setSeaContainerElement} className={className}>
+      <div tabIndex="0" ref={this.setSeaContainerElement} className={className}>
         <div ref={this.setSeaContentElement} className="sea__scrollarea">
           {SEAWEED.map(seaweed => (
             <Seaweed
@@ -53,11 +55,12 @@ class App extends PureComponent {
             <Creature
               key={`creature-${creature.name}`}
               creature={creature}
-              scrollPercent={scrollPercent}
+              scrollTop={scrollTop}
             />
           ))}
           <Submarine scrollPercent={scrollPercent} />
         </div>
+        <Quiz />
       </div>
     );
   }

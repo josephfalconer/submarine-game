@@ -31,6 +31,14 @@ export const CREATURES = [
     topOffset: 15,
     displayName: 'Seahorse',
     name: 'seahorse',
+    question: {
+      text: 'I am a sea-horse, I prefer to live in the seagrass. There are 54 different types of sea horse. Am I a good swimmer?',
+      correctAnswer: 'No',
+      choices: [
+        'Yes',
+        'No',
+      ],
+    }
   },
   {
     topOffset: 30,

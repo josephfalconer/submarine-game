@@ -121,3 +121,22 @@
 		transform: translate3d(-15px, -5px, 0);
 	} 
 }
+
+.quiz {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: $submarine-z-index + 3;
+	width: 100%;
+	height: 100%;
+
+	&__dialogue {
+		border-radius: remcalc(10);
+		min-width: remcalc(500);
+		min-height: remcalc(300);
+		background-color: rgba(255,255,255,0.5);
+	}
+}
