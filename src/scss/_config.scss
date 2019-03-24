@@ -24,7 +24,7 @@ $br--default    : .4em;
 $br--round      : 50%;
 
 // Transitions
-$trns-duration  : .4s;
+$transition-duration: 0.1s;
 
 // Path to Assets
 $path--rel      : "../img";
@@ -46,3 +46,5 @@ $border--white	: dashed 1px white;
 $sea-height-sm : 10000px;
 $sea-height-md : 15000px;
 $sea-height-lg : 20000px;
+
+$submarine-z-index: 2;

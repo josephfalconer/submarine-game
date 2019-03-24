@@ -5,6 +5,7 @@ import { updateStoreState } from '../actions';
 import { CREATURES, SEAWEED } from '../constants';
 import Creature from './creature';
 import Seaweed from './seaweed';
+import Submarine from './submarine';
 
 class App extends PureComponent {
 
