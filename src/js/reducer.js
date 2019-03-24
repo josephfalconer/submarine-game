@@ -3,6 +3,9 @@ import { SIMPLE_STATE_UPDATE } from './actions';
 const INITIAL_STATE = {
   scrollTop: 0,
   scrollPercent: 0,
+  doneQuestions: [],
+  isQuestion: false,
+  score: 0,
 }
 
 export default function simpleReducer(state = INITIAL_STATE, action) {

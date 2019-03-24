@@ -1,15 +1,25 @@
 import React, { PropTypes, PureComponent } from 'react';
+import { connect } from 'react-redux';
 
+import { updateStoreState } from '../actions';
 import { CREATURES } from '../constants';
 
-export default class Creature extends PureComponent {
+class Creature extends PureComponent {
 
-  componentWillReceiveProps(newProps) {
+  componentWillReceiveProps({scrollPercent}) {
+    const { creature, doneQuestions, isQuestion, updateStoreState } = this.props;
     if (
-      (this.props.scrollPercent > newProps.scrollPercent) && 
-      (newProps.scrollPercent > creature.position)
+      doneQuestions.indexOf(creature.name) === -1 && 
+      scrollPercent > creature.topOffset
     ) {
-      console.log('you went past me');
+      updateStoreState({
+        doneQuestions: [
+          ...doneQuestions,
+          creature.name,
+        ],
+        isQuestion: true,
+        quizQuestion: creature.question,
+      });
     }
   }
 
@@ -31,4 +41,18 @@ export default class Creature extends PureComponent {
 Creature.propTypes = {
   creature: PropTypes.object,
   scrollPercent: PropTypes.number,
+  updateStoreState: PropTypes.func,
+  doneQuestions: PropTypes.array,
+  isQuestion: PropTypes.bool,
 }
+
+function mapStateToProps({doneQuestions, isQuestion}) {
+  return {
+    doneQuestions,
+    isQuestion,
+  }
+}
+
+export default connect(mapStateToProps, {
+  updateStoreState,
+})(Creature);

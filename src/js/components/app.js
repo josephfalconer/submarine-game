@@ -38,9 +38,8 @@ class App extends PureComponent {
   }
 
   render() {
-    const { scrollPercent, scrollTop } = this.props;
-    // const className = scrollTop > 10000 ? 'sea__container no-scroll' : 'sea__container';
-    const className = 'sea__container';
+    const { scrollPercent, scrollTop, isQuestion } = this.props;
+    const className = isQuestion ? 'sea__container no-scroll' : 'sea__container';
     return (
       <div tabIndex="0" ref={this.setSeaContainerElement} className={className}>
         <div ref={this.setSeaContentElement} className="sea__scrollarea">
@@ -55,7 +54,7 @@ class App extends PureComponent {
             <Creature
               key={`creature-${creature.name}`}
               creature={creature}
-              scrollTop={scrollTop}
+              scrollPercent={scrollPercent}
             />
           ))}
           <Submarine scrollPercent={scrollPercent} />
@@ -69,12 +68,14 @@ class App extends PureComponent {
 App.propTypes = {
   scrollPercent: PropTypes.number,
   scrollTop: PropTypes.number,
+  isQuestion: PropTypes.bool,
 }
 
-function mapStateToProps({scrollTop, scrollPercent}) {
+function mapStateToProps({scrollTop, scrollPercent, isQuestion}) {
   return {
     scrollTop,
     scrollPercent,
+    isQuestion,
   }
 }
 
