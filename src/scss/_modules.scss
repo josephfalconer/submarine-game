@@ -132,11 +132,76 @@
 	z-index: $submarine-z-index + 3;
 	width: 100%;
 	height: 100%;
+	background-color: transparentize($deep-blue, 0.75);
+	transition: all $transition-duration;
+
+	&--active {
+		background-color: transparentize($deep-blue, 0.5);
+
+		.quiz__dialogue {
+			opacity: 1;
+		}
+	}
 
 	&__dialogue {
+		margin: remcalc(20);
 		border-radius: remcalc(10);
-		min-width: remcalc(500);
-		min-height: remcalc(300);
-		background-color: rgba(255,255,255,0.5);
+		max-width: remcalc(600);
+		padding: remcalc(30);
+		background-color: $quiz-main-colour;
+		border: $quiz-accent-colour solid 4px;
+		box-shadow: inset 0 0 6px 2px rgba(0,0,0,0.75);
+		opacity: 0;
+		transition: opacity $transition-duration;
+	}
+
+	&__button {
+		margin-right: remcalc(10);
+		outline: none;
+		border: none;
+		border-radius: remcalc(5);
+		min-width: remcalc(100);
+		padding: remcalc(10) remcalc(20);
+		background-color: $quiz-accent-colour;
+		color: $quiz-main-colour;
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+		&:hover,
+		&:focus {
+			background-color: lighten($quiz-accent-colour, 25%);
+		}
+
+		&:disabled {
+				background-color: $quiz-accent-colour;
+			}
+
+		&--correct {
+			background-color: $green;
+
+			&:hover,
+			&:focus {
+				background-color: darken($green, 25%);
+			}
+
+			&:disabled {
+				background-color: $green;
+			}
+		}
+
+		&--incorrect {
+			background-color: $red;
+
+			&:hover,
+			&:focus {
+				background-color: darken($red, 25%);
+			}
+
+			&:disabled {
+				background-color: $red;
+			}
+		}
 	}
 }

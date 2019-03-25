@@ -17,6 +17,7 @@ class App extends PureComponent {
   }
 
   componentDidMount() {
+    this.props.updateStoreState({scrollContainer: this.seaContainerElement});
     const intervalID = setInterval(() => {
       this.updateScrollTop();
     }, 10);

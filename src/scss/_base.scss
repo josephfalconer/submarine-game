@@ -1,4 +1,4 @@
-// ======
+// ====
 // Base
 // ================================
 
@@ -7,4 +7,21 @@ html {
 	margin: 0;
 	padding: 0;
 	text-align: center;
+	font-family: sans-serif;
+}
+
+button {
+	font-size: remcalc(18);
+	cursor: pointer;
+	transition: all $transition-duration;
+
+	&:disabled {
+		cursor: not-allowed;
+		opacity: 0.75;
+	}
+}
+
+h2 {
+	margin-top: 0;
+	font-size: remcalc(20);
 }

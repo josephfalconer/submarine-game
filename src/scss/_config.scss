@@ -14,7 +14,14 @@ $font-weight--bold       : 700;
 $font-weight--ultra-bold : 900;
 
 // Colors 
-$deep-blue : rgb(21, 62, 81);
+$deep-blue: rgb(21, 62, 81);
+$yellow: #FFF033;
+$black: #000000;
+$green: #16CB4A;
+$red: #F23C23;
+
+$quiz-main-colour: $yellow;
+$quiz-accent-colour: $black;
 
 // Fix grey transparencies for Safari
 $transparent	: rgba(255,255,255,0);

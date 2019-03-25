@@ -6,6 +6,8 @@ const INITIAL_STATE = {
   doneQuestions: [],
   isQuestion: false,
   score: 0,
+  chosenAnswerIndex: null,
+  isCorrectAnswer: null,
 }
 
 export default function simpleReducer(state = INITIAL_STATE, action) {
