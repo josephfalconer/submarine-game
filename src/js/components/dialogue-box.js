@@ -2,19 +2,31 @@ import React, { PropTypes, PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import { updateStoreState } from '../actions';
+import { INITIAL_STATE } from '../reducer';
 
-export class Quiz extends PureComponent {
+export class DialogueBox extends PureComponent {
   render() {
     const {
-      isQuestion,
       quizQuestion,
-      hasAnswered,
+      isDisabledButtons,
       chosenAnswerIndex,
       isCorrectAnswer,
+      scrollPercent,
+      score,
     } = this.props;
+    const hasScrolledFull = scrollPercent > 95;
+    const isActiveDialogue = quizQuestion || hasScrolledFull;
     return (
-      <div className={`quiz${isQuestion ? ' quiz--active' : ''}`}>
-        {(isQuestion && quizQuestion) && (
+      <div className={`quiz${isActiveDialogue ? ' quiz--active' : ''}`}>
+        {hasScrolledFull ? (
+          <div className="quiz__dialogue">
+            <h2 className="quiz__title">You reached the bottom.</h2>
+            <p>Your score is {score}</p>
+            <button className="quiz__button" onClick={this.resetGame}>
+              Play again
+            </button>
+          </div>
+        ) : quizQuestion ? (
           <div className="quiz__dialogue">
             <h2 className="quiz__title">{quizQuestion.text}</h2>
             {quizQuestion.choices.map((choice, index) => {
@@ -32,29 +44,37 @@ export class Quiz extends PureComponent {
                   key={`quiz-choice-${index}`} 
                   className={buttonClassName}
                   onClick={submitAnswer}
-                  disabled={hasAnswered}
-                >{choice}</button>
+                  disabled={isDisabledButtons}
+                >
+                  {choice}
+                </button>
               );
             })}
           </div>
-        )}
+        ) : null}
       </div>
     );
+  }
+
+  resetGame = () => {
+    this.props.updateStoreState(INITIAL_STATE);
+    this.props.scrollContainer.scrollTop = 0;
+    this.props.scrollContainer.focus()
   }
 
   submitAnswer = choice => {
     const { quizQuestion: { correctAnswer, choices }, updateStoreState, score } = this.props;
     const isCorrectAnswer = choice === correctAnswer;
     updateStoreState({
-      hasAnswered: true,
+      isDisabledButtons: true,
       score: isCorrectAnswer ? score + 1 : score,
       isCorrectAnswer,
       chosenAnswerIndex: choices.indexOf(choice),
     });
     setTimeout(() => {
       this.props.updateStoreState({
-        isQuestion: false,
-        hasAnswered: false,
+        quizQuestion: null,
+        isDisabledButtons: false,
         chosenAnswerIndex: null,
         isCorrectAnswer: null,
       });
@@ -63,36 +83,37 @@ export class Quiz extends PureComponent {
   }
 }
 
-Quiz.propTypes = {
+DialogueBox.propTypes = {
   updateStoreState: PropTypes.func,
   quizQuestion: PropTypes.object,
-  isQuestion: PropTypes.bool,
-  hasAnswered: PropTypes.bool,
+  isDisabledButtons: PropTypes.bool,
   isCorrectAnswer: PropTypes.bool,
   chosenAnswerIndex: PropTypes.number,
+  score: PropTypes.number,
+  scrollPercent: PropTypes.number,
   score: PropTypes.number,
 }
 
 function mapStateToProps({
   quizQuestion,
-  isQuestion,
   score,
-  hasAnswered,
+  isDisabledButtons,
   chosenAnswerIndex,
   isCorrectAnswer,
   scrollContainer,
+  scrollPercent,
 }) {
   return {
     quizQuestion,
-    isQuestion,
     score,
-    hasAnswered,
+    isDisabledButtons,
     chosenAnswerIndex,
     isCorrectAnswer,
     scrollContainer,
+    scrollPercent,
   }
 }
 
 export default connect(mapStateToProps, {
   updateStoreState,
-})(Quiz);
+})(DialogueBox);

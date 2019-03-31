@@ -7,7 +7,7 @@ import { CREATURES } from '../constants';
 class Creature extends PureComponent {
 
   componentWillReceiveProps({scrollPercent}) {
-    const { creature, doneQuestions, isQuestion, updateStoreState } = this.props;
+    const { creature, doneQuestions, updateStoreState } = this.props;
     if (
       doneQuestions.indexOf(creature.name) === -1 && 
       scrollPercent > creature.topOffset
@@ -17,7 +17,6 @@ class Creature extends PureComponent {
           ...doneQuestions,
           creature.name,
         ],
-        isQuestion: true,
         quizQuestion: creature.question,
       });
     }
@@ -43,13 +42,12 @@ Creature.propTypes = {
   scrollPercent: PropTypes.number,
   updateStoreState: PropTypes.func,
   doneQuestions: PropTypes.array,
-  isQuestion: PropTypes.bool,
 }
 
-function mapStateToProps({doneQuestions, isQuestion}) {
+function mapStateToProps({doneQuestions, scrollPercent}) {
   return {
     doneQuestions,
-    isQuestion,
+    scrollPercent,
   }
 }
 

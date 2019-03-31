@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { updateStoreState } from '../actions';
 import { CREATURES, SEAWEED } from '../constants';
 import Creature from './creature';
-import Quiz from './quiz';
+import DialogueBox from './dialogue-box';
 import Seaweed from './seaweed';
 import Submarine from './submarine';
 
@@ -39,8 +39,8 @@ class App extends PureComponent {
   }
 
   render() {
-    const { scrollPercent, scrollTop, isQuestion } = this.props;
-    const className = isQuestion ? 'sea__container no-scroll' : 'sea__container';
+    const { scrollPercent, scrollTop, quizQuestion } = this.props;
+    const className = quizQuestion ? 'sea__container no-scroll' : 'sea__container';
     return (
       <div tabIndex="0" ref={this.setSeaContainerElement} className={className}>
         <div ref={this.setSeaContentElement} className="sea__scrollarea">
@@ -52,15 +52,11 @@ class App extends PureComponent {
             />
           ))}
           {CREATURES.map(creature => (
-            <Creature
-              key={`creature-${creature.name}`}
-              creature={creature}
-              scrollPercent={scrollPercent}
-            />
+            <Creature key={`creature-${creature.name}`} creature={creature} />
           ))}
           <Submarine scrollPercent={scrollPercent} />
         </div>
-        <Quiz />
+        <DialogueBox />
       </div>
     );
   }
@@ -69,14 +65,14 @@ class App extends PureComponent {
 App.propTypes = {
   scrollPercent: PropTypes.number,
   scrollTop: PropTypes.number,
-  isQuestion: PropTypes.bool,
+  quizQuestion: PropTypes.object,
 }
 
-function mapStateToProps({scrollTop, scrollPercent, isQuestion}) {
+function mapStateToProps({scrollTop, scrollPercent, quizQuestion}) {
   return {
     scrollTop,
     scrollPercent,
-    isQuestion,
+    quizQuestion,
   }
 }
 
