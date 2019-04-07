@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { updateStoreState } from '../actions';
 import { CREATURES, SEAWEED } from '../constants';
 import Creature from './creature';
-import DialogueBox from './dialogue-box';
+import Dialogue from './dialogue';
 import Seaweed from './seaweed';
 import Submarine from './submarine';
 
@@ -56,7 +56,7 @@ class App extends PureComponent {
           ))}
           <Submarine scrollPercent={scrollPercent} />
         </div>
-        <DialogueBox />
+        <Dialogue />
       </div>
     );
   }

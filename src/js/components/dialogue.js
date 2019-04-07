@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { updateStoreState } from '../actions';
 import { INITIAL_STATE } from '../reducer';
 
-export class DialogueBox extends PureComponent {
+export class Dialogue extends PureComponent {
   render() {
     const {
       quizQuestion,
@@ -17,27 +17,27 @@ export class DialogueBox extends PureComponent {
     const hasScrolledFull = scrollPercent > 95;
     const isActiveDialogue = quizQuestion || hasScrolledFull;
     return (
-      <div className={`quiz${isActiveDialogue ? ' quiz--active' : ''}`}>
+      <div className={`dialogue${isActiveDialogue ? ' dialogue--active' : ''}`}>
         {hasScrolledFull ? (
-          <div className="quiz__dialogue">
-            <h2 className="quiz__title">You reached the bottom.</h2>
+          <div className="dialogue__window">
+            <h2 className="dialogue__title">You reached the bottom.</h2>
             <p>Your score is {score}</p>
-            <button className="quiz__button" onClick={this.resetGame}>
+            <button className="dialogue__button" onClick={this.resetGame}>
               Play again
             </button>
           </div>
         ) : quizQuestion ? (
-          <div className="quiz__dialogue">
-            <h2 className="quiz__title">{quizQuestion.text}</h2>
+          <div className="dialogue__window">
+            <h2 className="dialogue__title">{quizQuestion.text}</h2>
             {quizQuestion.choices.map((choice, index) => {
               const submitAnswer = () => this.submitAnswer(choice);
               const isCorrectButton = isCorrectAnswer && index === chosenAnswerIndex;
               const isIncorrectButton = !isCorrectAnswer && index === chosenAnswerIndex;
-              let buttonClassName = 'quiz__button';
+              let buttonClassName = 'dialogue__button';
               if (isCorrectButton) {
-                buttonClassName += ' quiz__button--correct';
+                buttonClassName += ' dialogue__button--correct';
               } else if (isIncorrectButton) {
-                buttonClassName += ' quiz__button--incorrect';
+                buttonClassName += ' dialogue__button--incorrect';
               }
               return (
                 <button 
@@ -83,7 +83,7 @@ export class DialogueBox extends PureComponent {
   }
 }
 
-DialogueBox.propTypes = {
+Dialogue.propTypes = {
   updateStoreState: PropTypes.func,
   quizQuestion: PropTypes.object,
   isDisabledButtons: PropTypes.bool,
@@ -116,4 +116,4 @@ function mapStateToProps({
 
 export default connect(mapStateToProps, {
   updateStoreState,
-})(DialogueBox);
+})(Dialogue);

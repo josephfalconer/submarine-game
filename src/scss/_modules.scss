@@ -122,7 +122,7 @@
   } 
 }
 
-.quiz {
+.dialogue {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -138,12 +138,12 @@
   &--active {
     background-color: transparentize($deep-blue, 0.5);
 
-    .quiz__dialogue {
+    .dialogue__window {
       opacity: 1;
     }
   }
 
-  &__dialogue {
+  &__window {
     margin: remcalc(20);
     border-radius: remcalc(10);
     max-width: remcalc(600);
