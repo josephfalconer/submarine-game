@@ -44,6 +44,7 @@ class App extends PureComponent {
     return (
       <div tabIndex="0" ref={this.setSeaContainerElement} className={className}>
         <div ref={this.setSeaContentElement} className="sea__scrollarea">
+          <h1>Submarine Wildlife Adventure</h1>
           {SEAWEED.map(seaweed => (
             <Seaweed
               key={`seaweed-${seaweed.name}`}
